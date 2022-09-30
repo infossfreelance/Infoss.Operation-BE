@@ -169,7 +169,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
         #endregion
 
         #region ShipmentOrder
-        [Route("ApiV1/ShipmentOrderList")]
+        [Route("Api/ShipmentOrderList")]
         [HttpPost]
         public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter,int flag)
         {
