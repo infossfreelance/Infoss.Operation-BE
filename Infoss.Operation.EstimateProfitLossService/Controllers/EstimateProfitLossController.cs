@@ -167,5 +167,29 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
             return Ok(result);
         }
         #endregion
+
+        #region ShipmentOrder
+        [Route("ApiV1/ShipmentOrderList")]
+        [HttpPut]
+        public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter)
+        {
+            var route = Request.Path.Value;
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+
+            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.CountryId, filter.CompanyId, filter.BranchId);
+            if (resRepo.Code == 500)
+            {
+                var response = new Response<responseShipmentList>();
+                response.status = resRepo.Code;
+                response.message = resRepo.Message;
+                response.succeeded = false;
+
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+
+            var pagedReponse = PaginationHelper.CreatePagedReponse<EstimateProfitLossResponse>(resRepo.Data, validFilter, resRepo.CountData, uriService, route);
+            return Ok(pagedReponse);
+        }
+        #endregion
     }
 }

@@ -474,5 +474,43 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
 
 
         #endregion
+
+        #region ShipmentOrder
+        public async Task<PageSetResponse<EstimateProfitLossResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId)
+        {
+            var results = new PageSetResponse<EstimateProfitLossResponse>();
+            try
+            {
+                var parameters = new DynamicParameters();
+                //parameters.Add("@PageNo", PageNumber);
+                //parameters.Add("@PageSize", PageSize);
+                //parameters.Add("@CountryId", CountryId);
+                //parameters.Add("@CompanyId", CompanyId);
+                //parameters.Add("@BranchId", BranchId);
+                parameters.Add("@RecordCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var multi = (await connection.QueryMultipleAsync("operation.SP_EstimateProfitLoss_Read_Header", parameters, commandType: CommandType.StoredProcedure)))
+                    {
+                        results.Data = (await multi.ReadAsync<EstimateProfitLossResponse>()).ToList();
+                        results.CountData = parameters.Get<int>("@RecordCount");
+                        if (results.Data == null)
+                        {
+                            results.Code = 204;
+                        }
+                        return results;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                results.Code = 500;
+                results.Message = ex.Message;
+                return results;
+            }
+        }
+
+        #endregion
     }
 }
