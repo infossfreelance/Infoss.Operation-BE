@@ -41,4 +41,19 @@
         public int RecordCount { get; set; }
 
     }
+
+    public class ShipmentOrderResponse
+    {
+        public int ShipmentId { get; set; }
+    }
+
+    public class ResponseShipmentList
+    {
+        public IEnumerable<ShipmentOrderResponse> list { get; set; }
+
+        public int pageSize { get; set; }
+        public int PageNo { get; set; }
+        public int RecordCount { get; set; }
+
+    }
 }

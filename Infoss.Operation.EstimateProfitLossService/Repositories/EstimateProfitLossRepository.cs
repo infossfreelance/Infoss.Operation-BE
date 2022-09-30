@@ -476,9 +476,9 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
         #endregion
 
         #region ShipmentOrder
-        public async Task<PageSetResponse<EstimateProfitLossResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId)
+        public async Task<PageSetResponse<ShipmentOrderResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId)
         {
-            var results = new PageSetResponse<EstimateProfitLossResponse>();
+            var results = new PageSetResponse<ShipmentOrderResponse>();
             try
             {
                 var parameters = new DynamicParameters();
@@ -491,9 +491,9 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
 
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    using (var multi = (await connection.QueryMultipleAsync("operation.SP_EstimateProfitLoss_Read_Header", parameters, commandType: CommandType.StoredProcedure)))
+                    using (var multi = (await connection.QueryMultipleAsync("operation.SP_EstimateProfitLoss_Get_EPL_Shipment_List", parameters, commandType: CommandType.StoredProcedure)))
                     {
-                        results.Data = (await multi.ReadAsync<EstimateProfitLossResponse>()).ToList();
+                        results.Data = (await multi.ReadAsync<ShipmentOrderResponse>()).ToList();
                         results.CountData = parameters.Get<int>("@RecordCount");
                         if (results.Data == null)
                         {

@@ -170,7 +170,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
 
         #region ShipmentOrder
         [Route("ApiV1/ShipmentOrderList")]
-        [HttpPut]
+        [HttpPost]
         public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter)
         {
             var route = Request.Path.Value;
@@ -179,7 +179,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
             var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.CountryId, filter.CompanyId, filter.BranchId);
             if (resRepo.Code == 500)
             {
-                var response = new Response<responseShipmentList>();
+                var response = new Response<ShipmentOrderResponse>();
                 response.status = resRepo.Code;
                 response.message = resRepo.Message;
                 response.succeeded = false;
@@ -187,7 +187,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
 
-            var pagedReponse = PaginationHelper.CreatePagedReponse<EstimateProfitLossResponse>(resRepo.Data, validFilter, resRepo.CountData, uriService, route);
+            var pagedReponse = PaginationHelper.CreatePagedReponse<ShipmentOrderResponse>(resRepo.Data, validFilter, resRepo.CountData, uriService, route);
             return Ok(pagedReponse);
         }
         #endregion
