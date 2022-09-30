@@ -45,6 +45,9 @@
     public class ShipmentOrderResponse
     {
         public int ShipmentId { get; set; }
+        public int Shipper { get; set; }
+        public int Agent { get; set; }
+        public int AccountId { get; set; }
     }
 
     public class ResponseShipmentList

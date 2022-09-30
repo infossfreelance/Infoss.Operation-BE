@@ -171,12 +171,12 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
         #region ShipmentOrder
         [Route("ApiV1/ShipmentOrderList")]
         [HttpPost]
-        public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter)
+        public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter,int flag)
         {
             var route = Request.Path.Value;
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
 
-            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.CountryId, filter.CompanyId, filter.BranchId);
+            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.CountryId, filter.CompanyId, filter.BranchId,flag);
             if (resRepo.Code == 500)
             {
                 var response = new Response<ShipmentOrderResponse>();

@@ -476,7 +476,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
         #endregion
 
         #region ShipmentOrder
-        public async Task<PageSetResponse<ShipmentOrderResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId)
+        public async Task<PageSetResponse<ShipmentOrderResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId,int flag)
         {
             var results = new PageSetResponse<ShipmentOrderResponse>();
             try
@@ -487,6 +487,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
                 //parameters.Add("@CountryId", CountryId);
                 //parameters.Add("@CompanyId", CompanyId);
                 //parameters.Add("@BranchId", BranchId);
+                parameters.Add("@flag", flag);
                 parameters.Add("@RecordCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 using (var connection = new SqlConnection(connectionString))
