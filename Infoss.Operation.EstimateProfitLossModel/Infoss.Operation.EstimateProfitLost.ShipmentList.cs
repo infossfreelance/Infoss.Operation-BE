@@ -23,9 +23,9 @@ namespace Infoss.Operation.EstimateProfitLossModel
         public int IsAdditional { set; get; }
         public int IsIgnoreItem { set; get; }
         public int KendaraanId { set; get; }
-        public int KendaraanNopol { set; get; }
+        public string KendaraanNopol { set; get; }
         public int EmployeeId { set; get; }
-        public int EmployeeName { set; get; }
+        public string EmployeeName { set; get; }
     }
 
     public class ShipmentRequestById
