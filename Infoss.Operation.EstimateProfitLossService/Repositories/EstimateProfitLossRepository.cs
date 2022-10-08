@@ -512,6 +512,43 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
             }
         }
 
+        public async Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId)
+        {
+            var results = new PageSetResponse<ShippmentListByIdResponse>();
+            try
+            {
+                var parameters = new DynamicParameters();
+                //parameters.Add("@PageNo", PageNumber);
+                //parameters.Add("@PageSize", PageSize);
+                parameters.Add("@CountryId", CountryId);
+                parameters.Add("@CompanyId", CompanyId);
+                parameters.Add("@BranchId", BranchId);
+                parameters.Add("@ShippingId", ShippingId);
+                parameters.Add("@flag", flag);
+                parameters.Add("@RecordCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var multi = (await connection.QueryMultipleAsync("operation.SP_EstimateProfitLoss_Get_EPL_by_ShipmentId", parameters, commandType: CommandType.StoredProcedure)))
+                    {
+                        results.Data = (await multi.ReadAsync<ShippmentListByIdResponse>()).ToList();
+                        results.CountData = parameters.Get<int>("@RecordCount");
+                        if (results.Data == null)
+                        {
+                            results.Code = 204;
+                        }
+                        return results;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                results.Code = 500;
+                results.Message = ex.Message;
+                return results;
+            }
+        }
+
         #endregion
     }
 }
