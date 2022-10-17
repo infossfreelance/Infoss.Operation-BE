@@ -36,4 +36,6 @@ namespace Infoss.Operation.EstimateProfitLossModel
         public int BranchId { get; set; }
         public int CompanyId { get; set; }
     }
+
+  
 }

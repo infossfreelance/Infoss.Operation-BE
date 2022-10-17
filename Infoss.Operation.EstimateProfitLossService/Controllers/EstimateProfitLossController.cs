@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static Infoss.Operation.EstimateProfitLossService.Filter.PaginationFilter;
 
 namespace Infoss.Operation.EstimateProfitLossService.Controllers
 {
@@ -171,12 +172,12 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
         #region ShipmentOrder
         [Route("Api/ShipmentOrderList")]
         [HttpPost]
-        public async Task<ActionResult> GetShipmentList([FromBody] PaginationFilter filter,int flag)
+        public async Task<ActionResult> GetShipmentList([FromBody] ShipmentListByFilter filter)
         {
             var route = Request.Path.Value;
-            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var validFilter = new PaginationFilter(filter.PaginationFilter.PageNumber, filter.PaginationFilter.PageSize);
 
-            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.CountryId, filter.CompanyId, filter.BranchId,flag);
+            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListRepository(validFilter.PageNumber, validFilter.PageSize, filter.PaginationFilter.CountryId, filter.PaginationFilter.CompanyId, filter.PaginationFilter.BranchId,filter.flag);
             if (resRepo.Code == 500)
             {
                 var response = new Response<ShipmentOrderResponse>();

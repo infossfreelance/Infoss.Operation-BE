@@ -19,6 +19,13 @@
             this.PageNumber = numPage;
             this.PageSize = sizePage;
         }
+
+        public class ShipmentListByFilter
+        {
+            public int flag { get; set; }
+            public PaginationFilter PaginationFilter { get; set; }
+
+        }
     }
 
 }
