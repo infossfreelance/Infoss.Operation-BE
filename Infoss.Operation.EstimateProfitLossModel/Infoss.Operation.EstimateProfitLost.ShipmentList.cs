@@ -8,8 +8,9 @@ namespace Infoss.Operation.EstimateProfitLossModel
 {
     public class ShippmentListByIdResponse
     {
+        public string RowStatus { set; get; }
         public int HeaderId { set; get; }
-        public int tailId { set; get; }
+        public int DetailId { set; get; }
         public int CountryId { set; get; }
         public int BranchId { set; get; }
         public int CustomerId { set; get; }
@@ -32,6 +33,7 @@ namespace Infoss.Operation.EstimateProfitLossModel
     {
         public int flag { get; set; }
         public int ShipmentId { get; set; }
+        public int CustomerTypeId { get; set; }
         public int CountryId { get; set; }
         public int BranchId { get; set; }
         public int CompanyId { get; set; }
