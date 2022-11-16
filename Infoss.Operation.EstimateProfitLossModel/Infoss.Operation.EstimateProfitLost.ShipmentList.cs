@@ -19,10 +19,10 @@ namespace Infoss.Operation.EstimateProfitLossModel
         public string Description { set; get; }
         public int AmountIDR { set; get; }
         public int AmountUSD { set; get; }
-        public int IsCostToCost { set; get; }
-        public int IsCostTrucking { set; get; }
-        public int IsAdditional { set; get; }
-        public int IsIgnoreItem { set; get; }
+        public bool IsCostToCost { set; get; }
+        public bool IsCostTrucking { set; get; }
+        public bool IsAdditional { set; get; }
+        public bool IsIgnoreItem { set; get; }
         public int KendaraanId { set; get; }
         public string KendaraanNopol { set; get; }
         public int EmployeeId { set; get; }
