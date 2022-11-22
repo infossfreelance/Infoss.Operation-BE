@@ -28,6 +28,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
 
         public Task<PageSetResponse<ShipmentOrderResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId,int flag);
         public Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId,int CustomerId,int CustomerTypeId);
+        public Task<PageSetResponse<CustomerResponseById>> GetCustomerIdRepository(int CountryId, int CompanyId, int BranchId, int ShippingId);
 
 
     }

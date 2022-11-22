@@ -41,5 +41,20 @@ namespace Infoss.Operation.EstimateProfitLossModel
         public int CompanyId { get; set; }
     }
 
+    public class CustomerRequestById
+    {
+        public int ShipmentId { get; set; }
+        public int CountryId { get; set; }
+        public int BranchId { get; set; }
+        public int CompanyId { get; set; }
+    }
+
+    public class CustomerResponseById
+    {
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public int CustomerTypeId { get; set; }
+    }
+
   
 }

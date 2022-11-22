@@ -218,6 +218,33 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
             //var pagedReponse = PaginationHelper.CreatePagedReponse<ShippmentListByIdResponse>(resRepo.Data, validFilter, resRepo.CountData, uriService, route);
             return Ok(resRepo);
         }
+
+        [Route("Api/CustomerListByShipmentId")]
+        [HttpPost]
+        public async Task<ActionResult> GetCustomerListByShipmentId([FromBody] CustomerRequestById RequestShipment)
+        {
+            var route = Request.Path.Value;
+            //var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+
+            var resRepo = await estimateProfitLossRepository.GetCustomerIdRepository(RequestShipment.CountryId, RequestShipment.CompanyId, RequestShipment.BranchId, RequestShipment.ShipmentId);
+
+            //foreach(var dat in resRepo.Data)
+            //{
+            //    dat.CustomerName = 
+            //}
+            if (resRepo.Code == 500)
+            {
+                var response = new Response<ShippmentListByIdResponse>();
+                response.status = resRepo.Code;
+                response.message = resRepo.Message;
+                response.succeeded = false;
+
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+
+            //var pagedReponse = PaginationHelper.CreatePagedReponse<ShippmentListByIdResponse>(resRepo.Data, validFilter, resRepo.CountData, uriService, route);
+            return Ok(resRepo);
+        }
         #endregion
     }
 }
