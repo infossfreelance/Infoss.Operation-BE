@@ -14,6 +14,7 @@ namespace Infoss.Operation.EstimateProfitLossModel
         public int CountryId { set; get; }
         public int BranchId { set; get; }
         public int CustomerId { set; get; }
+        public string CustomerName { set; get; }
         public int CustomerTypeId { set; get; }
         public int AccountId { set; get; }
         public string Description { set; get; }
@@ -33,6 +34,7 @@ namespace Infoss.Operation.EstimateProfitLossModel
     {
         public int flag { get; set; }
         public int ShipmentId { get; set; }
+        public int CustomerId { get; set; }
         public int CustomerTypeId { get; set; }
         public int CountryId { get; set; }
         public int BranchId { get; set; }

@@ -199,7 +199,12 @@ namespace Infoss.Operation.EstimateProfitLossService.Controllers
             var route = Request.Path.Value;
             //var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
 
-            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListByIdRepository(RequestShipment.CountryId, RequestShipment.CompanyId, RequestShipment.BranchId, RequestShipment.flag, RequestShipment.ShipmentId,RequestShipment.CustomerTypeId);
+            var resRepo = await estimateProfitLossRepository.GetShipmentOrderListByIdRepository(RequestShipment.CountryId, RequestShipment.CompanyId, RequestShipment.BranchId, RequestShipment.flag, RequestShipment.ShipmentId,RequestShipment.CustomerId,RequestShipment.CustomerTypeId);
+            
+            //foreach(var dat in resRepo.Data)
+            //{
+            //    dat.CustomerName = 
+            //}
             if (resRepo.Code == 500)
             {
                 var response = new Response<ShippmentListByIdResponse>();

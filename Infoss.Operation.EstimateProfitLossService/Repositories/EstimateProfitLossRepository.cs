@@ -512,7 +512,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
             }
         }
 
-        public async Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId,int CustomerTypeId)
+        public async Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId,int CustomerId,int CustomerTypeId)
         {
             var results = new PageSetResponse<ShippmentListByIdResponse>();
             try
@@ -524,6 +524,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
                 parameters.Add("@CompanyId", CompanyId);
                 parameters.Add("@BranchId", BranchId);
                 parameters.Add("@ShippingId", ShippingId);
+                parameters.Add("@CustomerId", CustomerId);
                 parameters.Add("@CustomerTypeId", CustomerTypeId);
                 parameters.Add("@flag", flag);
                 parameters.Add("@RecordCount", dbType: DbType.Int32, direction: ParameterDirection.Output);

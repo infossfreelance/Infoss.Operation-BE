@@ -27,7 +27,7 @@ namespace Infoss.Operation.EstimateProfitLossService.Repositories
         public Task<Response<EstimateProfitLossRequestDetailGrid>> UpdateProfitShare(EstimateProfitLossRequestDetailGrid estimateProfitLossDetailGrid, ProfitShare profitShare);
 
         public Task<PageSetResponse<ShipmentOrderResponse>> GetShipmentOrderListRepository(int PageNumber, int PageSize, int CountryId, int CompanyId, int BranchId,int flag);
-        public Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId,int CustomerTypeId);
+        public Task<PageSetResponse<ShippmentListByIdResponse>> GetShipmentOrderListByIdRepository(int CountryId, int CompanyId, int BranchId, int flag,int ShippingId,int CustomerId,int CustomerTypeId);
 
 
     }
